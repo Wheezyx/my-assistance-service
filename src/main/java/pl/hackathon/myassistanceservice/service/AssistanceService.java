@@ -45,6 +45,7 @@ public class AssistanceService {
         new RuntimeException("Creator not found"));
 
     assistanceToSave.setCreator(creator);
+    assistanceToSave.setAssistanceStatus(AssistanceStatus.ACTIVE);
     return assistanceRepository.save(assistanceToSave);
 
   }

@@ -22,6 +22,7 @@ public class AssistanceDto {
 
   private Long assistant;
 
+
   private AssistanceStatus assistanceStatus;
 
   private String disabilityType;
