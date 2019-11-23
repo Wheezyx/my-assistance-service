@@ -1,18 +1,20 @@
 package pl.hackathon.myassistanceservice.persistance.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.Accessors;
-import pl.hackathon.myassistanceservice.persistance.enums.AssistanceStatus;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+import pl.hackathon.myassistanceservice.persistance.enums.AssistanceStatus;
+import pl.hackathon.myassistanceservice.rest.dto.AssistanceDto;
 
 @Entity
 @NoArgsConstructor
@@ -31,12 +33,25 @@ public class Assistance {
     @NotNull
     private Double longitude;
 
-    @NotNull
-    private String creator; //TODO: connect with user, @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "creator")
+    private User creator;
 
-    private String assistant; //TODO: connect with user, @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "assistant")
+    private User assistant;
 
     @Enumerated(EnumType.STRING)
     private AssistanceStatus assistanceStatus;
 
+
+    public AssistanceDto toDto() {
+        return new AssistanceDto()
+            .setId(this.id)
+            .setLatitude(this.latitude)
+            .setLongitude(this.longitude)
+            .setCreator(this.creator != null ? this.creator.getId() : null)
+            .setAssistant(this.assistant != null ? this.assistant.getId() : null)
+            .setAssistanceStatus(this.assistanceStatus);
+    }
 }
