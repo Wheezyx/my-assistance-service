@@ -11,7 +11,7 @@ import pl.hackathon.myassistanceservice.rest.dto.UserDto;
 import pl.hackathon.myassistanceservice.service.UserService;
 
 @AllArgsConstructor
-@RequestMapping("/api/login")
+@RequestMapping("/login")
 @RestController
 public class LoginController {
 
