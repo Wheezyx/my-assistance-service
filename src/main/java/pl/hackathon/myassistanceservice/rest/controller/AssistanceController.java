@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.hackathon.myassistanceservice.persistance.entity.Assistance;
 import pl.hackathon.myassistanceservice.service.AssistanceService;
 
-import java.math.BigDecimal;
 import java.util.Set;
 
 @RestController
@@ -19,7 +18,7 @@ public class AssistanceController {
 
     private final AssistanceService assistanceService;
 
-    @GetMapping
+    @GetMapping(value = "/range")
     public ResponseEntity getAssistances(@RequestParam double latitude,
                                          @RequestParam double longitude,
                                          @RequestParam(defaultValue = "10.0") double range) {

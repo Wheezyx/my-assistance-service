@@ -5,32 +5,33 @@ import org.springframework.stereotype.Service;
 import pl.hackathon.myassistanceservice.persistance.entity.Assistance;
 import pl.hackathon.myassistanceservice.persistance.repository.AssistanceRepository;
 
-import java.math.BigDecimal;
 import java.util.Set;
 
 @Service
 @AllArgsConstructor
 public class AssistanceService {
 
-    private static final double LATITUDE_DEGREE_KM = 180 / (110.574 * Math.PI);
-    private static final double LONGITUDE_DEGREE_KM = 180 / (111.320 * Math.PI);
+    private static final double LATITUDE_DEGREE_IN_KM = 110.574;
+    private static final double LONGITUDE_DEGREE_IN_KM = 111.320;
 
     private final AssistanceRepository assistanceRepository;
 
     public Set<Assistance> findAssistancesInRange(double latitude, double longitude, double range) {
-        double minLatitude = latitude - LATITUDE_DEGREE_KM;
-        double maxLatitude = latitude + LATITUDE_DEGREE_KM;
-        double minLongitude = longitude - LONGITUDE_DEGREE_KM;
-        double maxLongitude = longitude + LONGITUDE_DEGREE_KM;
+        double latitudeRange = calculateLatitudeRange(range);
+        double longitudeRange = calculateLongitudeRange(range, latitude);
+        double minLatitude = latitude - latitudeRange;
+        double maxLatitude = latitude + latitudeRange;
+        double minLongitude = longitude - longitudeRange;
+        double maxLongitude = longitude + longitudeRange;
         return assistanceRepository.findAllByLatitudeBetweenAndLongitudeBetween(minLatitude, maxLatitude, minLongitude, maxLongitude);
     }
 
-    private double calculateLatitude(double range) {
-        return 0; //todo: implement
+    private double calculateLatitudeRange(double range) {
+        return (range * Math.PI) / (180 * LATITUDE_DEGREE_IN_KM);
     }
 
-    private double calculateLongitude(double range) {
-        return 0; //todo: implement
+    private double calculateLongitudeRange(double range, double latitude) {
+        return (range * Math.PI) / (180 * LONGITUDE_DEGREE_IN_KM * Math.cos(latitude));
     }
 
 }
