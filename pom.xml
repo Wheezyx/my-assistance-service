@@ -60,8 +60,8 @@
             </exclusions>
         </dependency>
         <dependency>
-            <artifactId>spring-boot-starter-websocket</artifactId>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
     </dependencies>
 

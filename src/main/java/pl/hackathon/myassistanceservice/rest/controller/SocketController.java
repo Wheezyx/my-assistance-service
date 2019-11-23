@@ -1,4 +1,4 @@
-package pl.hackathon.myassistanceservice.service;
+package pl.hackathon.myassistanceservice.rest.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -10,13 +10,11 @@ import pl.hackathon.myassistanceservice.rest.dto.LocationMessage;
 @AllArgsConstructor
 public class SocketController {
 
-  private final SimpMessagingTemplate messagingTemplate;
+    private final SimpMessagingTemplate messagingTemplate;
 
-
-  @MessageMapping("/position")
-  public void sendAssistantLocationToCreator(LocationMessage message) {
-    messagingTemplate
-        .convertAndSendToUser(String.valueOf(message.getCreatorId()), "/location", message);
-  }
+    @MessageMapping("/position")
+    public void sendAssistantLocationToCreator(LocationMessage message) {
+        messagingTemplate.convertAndSendToUser(message.getCreatorId().toString(), "/location", message);
+    }
 }
 
