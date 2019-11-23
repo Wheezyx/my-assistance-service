@@ -21,7 +21,7 @@ public class AssistanceService {
 
     private final AssistanceRepository assistanceRepository;
     private final UserRepository userRepository;
-
+    private EmailService emailService;
 
     public Set<AssistanceDto> findAssistancesInRange(double latitude, double longitude, double range) {
         double latitudeRange = calculateLatitudeRange(range);
@@ -77,6 +77,8 @@ public class AssistanceService {
 
         assistance.setAssistant(assistant);
         assistance.setAssistanceStatus(AssistanceStatus.IN_PROGRESS);
+
+        emailService.sendMail(assistance.getCreator().getFirstName(), assistance.getCreator().getEmail(), assistant.getUsername());
 
         return assistanceRepository.save(assistance);
     }
