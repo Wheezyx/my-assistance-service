@@ -74,4 +74,9 @@ public class AssistanceService {
 
         return assistanceRepository.save(assistance);
     }
+
+    public Assistance updateAssistance(Long id, Assistance assistance) {
+        assistance.setId(id);
+        return this.assistanceRepository.save(assistance);
+    }
 }
