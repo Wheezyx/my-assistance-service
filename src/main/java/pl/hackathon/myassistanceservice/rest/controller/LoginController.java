@@ -33,6 +33,7 @@ public class LoginController {
 
     return UserDto.builder()
         .id(user.getId())
+        .points(user.getPoints())
         .notCompletedAssistances(notCompletedAssistances)
         .build();
   }
