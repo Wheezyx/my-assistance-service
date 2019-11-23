@@ -23,7 +23,7 @@ public class AssistanceService {
         double maxLatitude = latitude + latitudeRange;
         double minLongitude = longitude - longitudeRange;
         double maxLongitude = longitude + longitudeRange;
-        return assistanceRepository.findAllByLatitudeBetweenAndLongitudeBetween(minLatitude, maxLatitude, minLongitude, maxLongitude);
+        return assistanceRepository.findAssistanceInRange(minLatitude, maxLatitude, minLongitude, maxLongitude);
     }
 
     private double calculateLatitudeRange(double range) {
