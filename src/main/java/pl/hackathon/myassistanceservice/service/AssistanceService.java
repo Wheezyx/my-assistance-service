@@ -79,4 +79,9 @@ public class AssistanceService {
         assistance.setId(id);
         return this.assistanceRepository.save(assistance);
     }
+
+    public Set<Assistance> findAllNotCompletedAssistancesByCreatorId(Long id) {
+        return this.assistanceRepository.findAllNotCompletedByCreatorId(id);
+
+    }
 }
