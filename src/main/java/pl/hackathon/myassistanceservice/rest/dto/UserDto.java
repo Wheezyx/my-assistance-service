@@ -11,6 +11,6 @@ import lombok.Data;
 public final class UserDto {
 
   private Long id;
-
+  private int points;
   private Set<AssistanceDto> notCompletedAssistances;
 }
