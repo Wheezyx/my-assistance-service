@@ -1,6 +1,6 @@
-INSERT INTO USERS(ID, USERNAME, FIRST_NAME, LAST_NAME) VALUES
-(1, 'antek', 'Antek', 'Kowalski'),
-(2, 'Mario', 'Marek', 'Kowalekowk');
+INSERT INTO USERS(ID, USERNAME, FIRST_NAME, LAST_NAME, POINTS) VALUES
+(1, 'antek', 'Antek', 'Kowalski', 16),
+(2, 'Mario', 'Marek', 'Kowalekowk', 0);
 
 INSERT INTO ASSISTANCE(ID, ASSISTANCE_STATUS, DISABILITY_TYPE, HELP_TYPE, LATITUDE, LONGITUDE, ASSISTANT, CREATOR) VALUES
 (1, 'ACTIVE', null, 'Mam złamaną nogę, mieszkam na 4 piętrzę i potrzebuję się dostać do szpitala', '52.216902', '20.980143', null, 1),

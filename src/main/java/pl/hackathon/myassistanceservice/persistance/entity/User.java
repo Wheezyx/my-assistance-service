@@ -28,7 +28,7 @@ public class User {
   private String password;
   private String firstName;
   private String lastName;
-  private int points;
+  private Integer points;
 
   @OneToMany(mappedBy = "creator", fetch = FetchType.EAGER, orphanRemoval = true)
   private Set<Assistance> created; //TODO RENAME THE FIELD
