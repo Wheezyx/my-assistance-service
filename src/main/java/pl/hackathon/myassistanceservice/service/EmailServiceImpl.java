@@ -30,8 +30,8 @@ public class EmailServiceImpl implements EmailService {
     @Async
     @Override
     public void sendMail(String directEmail, String directUsername, String assistantUsername) {
-        String helperPersonLink = createAssistancePersonLink(assistantUsername);
-        MessageData messageData = new MessageData(directUsername, assistantUsername, helperPersonLink);
+        String assistantPersonLink = createAssistantPersonLink(assistantUsername);
+        MessageData messageData = new MessageData(directUsername, assistantUsername, assistantPersonLink);
         String subject = MailMessageTemplateUtil.createMessageSubjectTemplate();
         String text = MailMessageTemplateUtil.createMessageContentTemplate(messageData);
         String from = MailMessageTemplateUtil.getServiceEmail();
@@ -41,8 +41,8 @@ public class EmailServiceImpl implements EmailService {
         mailSender.send(mimeMessage);
     }
 
-    private String createAssistancePersonLink(String assistanceUsername) {
-        User assistant = repository.findByUsername(assistanceUsername).orElseThrow(() ->
+    private String createAssistantPersonLink(String assistantUsername) {
+        User assistant = repository.findByUsername(assistantUsername).orElseThrow(() ->
                 new RuntimeException("Creator not found"));
         return baseUrl + "/user/" + assistant.getUsername();
     }
