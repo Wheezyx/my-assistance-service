@@ -24,4 +24,8 @@ public class AssistanceDto {
 
   private AssistanceStatus assistanceStatus;
 
+  private String disabilityType;
+
+  private String helpType;
+
 }
