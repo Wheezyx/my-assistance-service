@@ -16,5 +16,7 @@ public class DBInitializer implements CommandLineRunner {
   public void run(String... args) {
     userRepository.save(
         new User().setId(null).setUsername("antek").setFirstName("Antek").setLastName("Kowalski"));
+    userRepository.save(new User().setId(null).setUsername("Mario").setFirstName("Marek")
+        .setLastName("Kowalekowk"));
   }
 }

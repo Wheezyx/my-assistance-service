@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.hackathon.myassistanceservice.persistance.entity.Assistance;
 import pl.hackathon.myassistanceservice.persistance.entity.User;
+import pl.hackathon.myassistanceservice.persistance.enums.AssistanceStatus;
 import pl.hackathon.myassistanceservice.persistance.repository.AssistanceRepository;
 import pl.hackathon.myassistanceservice.persistance.repository.UserRepository;
 
@@ -26,11 +27,12 @@ public class AssistanceService {
         double maxLatitude = latitude + latitudeRange;
         double minLongitude = longitude - longitudeRange;
         double maxLongitude = longitude + longitudeRange;
-        return assistanceRepository.findAssistanceInRange(minLatitude, maxLatitude, minLongitude, maxLongitude);
+        return assistanceRepository
+            .findAssistanceInRange(minLatitude, maxLatitude, minLongitude, maxLongitude);
     }
 
     private double calculateLatitudeRange(double range) {
-        return range  / LATITUDE_DEGREE_IN_KM;
+        return range / LATITUDE_DEGREE_IN_KM;
     }
 
     private double calculateLongitudeRange(double range) {
@@ -45,5 +47,36 @@ public class AssistanceService {
         assistanceToSave.setCreator(creator);
         return assistanceRepository.save(assistanceToSave);
 
+    }
+
+    public Assistance findAssistanceById(Long id) {
+        return this.assistanceRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Assistance not found"));
+    }
+
+    public Assistance assignAssistance(Long assistanceId, Long assistantId) {
+        User assistant = userRepository.findById(assistantId).orElseThrow(() ->
+            new RuntimeException("Creator not found"));
+
+        Assistance assistance = this.findAssistanceById(assistanceId);
+
+        if (assistance.getAssistant() != null) {
+            throw new RuntimeException("Assistant is already assign.");
+        }
+
+        if (assistant.getId().equals(assistance.getCreator().getId())) {
+            throw new RuntimeException(
+                "You cannot assign yourself to the assistance that you've created.");
+        }
+
+        assistance.setAssistant(assistant);
+        assistance.setAssistanceStatus(AssistanceStatus.IN_PROGRESS);
+
+        return assistanceRepository.save(assistance);
+    }
+
+    public Assistance updateAssistance(Long id, Assistance assistance) {
+        assistance.setId(id);
+        return this.assistanceRepository.save(assistance);
     }
 }
