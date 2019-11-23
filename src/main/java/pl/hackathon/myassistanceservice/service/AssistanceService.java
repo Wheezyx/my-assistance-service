@@ -21,7 +21,7 @@ public class AssistanceService {
 
     public Set<Assistance> findAssistancesInRange(double latitude, double longitude, double range) {
         double latitudeRange = calculateLatitudeRange(range);
-        double longitudeRange = calculateLongitudeRange(range, latitude);
+        double longitudeRange = calculateLongitudeRange(range);
         double minLatitude = latitude - latitudeRange;
         double maxLatitude = latitude + latitudeRange;
         double minLongitude = longitude - longitudeRange;
@@ -30,20 +30,20 @@ public class AssistanceService {
     }
 
     private double calculateLatitudeRange(double range) {
-        return (range * Math.PI) / (180 * LATITUDE_DEGREE_IN_KM);
+        return range  / LATITUDE_DEGREE_IN_KM;
     }
 
-    private double calculateLongitudeRange(double range, double latitude) {
-        return (range * Math.PI) / (180 * LONGITUDE_DEGREE_IN_KM * Math.cos(latitude));
+    private double calculateLongitudeRange(double range) {
+        return range / LONGITUDE_DEGREE_IN_KM;
     }
 
-    public Assistance saveAssistance(Assistance assistancetoSave, Long creatorId) {
+    public Assistance saveAssistance(Assistance assistanceToSave, Long creatorId) {
         //TODO Change runtime exception to dedicated, properly named exception and handle it
         final User creator = userRepository.findById(creatorId).orElseThrow(() ->
             new RuntimeException("Creator not found"));
 
-        assistancetoSave.setCreator(creator);
-        return assistanceRepository.save(assistancetoSave);
+        assistanceToSave.setCreator(creator);
+        return assistanceRepository.save(assistanceToSave);
 
     }
 }
