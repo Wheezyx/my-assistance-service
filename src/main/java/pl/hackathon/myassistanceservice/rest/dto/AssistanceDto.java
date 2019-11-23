@@ -20,8 +20,11 @@ public class AssistanceDto {
 
   private Long creator;
 
+  private String creatorName;
+
   private Long assistant;
 
+  private String assistantName;
 
   private AssistanceStatus assistanceStatus;
 
