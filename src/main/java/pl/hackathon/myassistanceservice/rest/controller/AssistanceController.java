@@ -40,5 +40,13 @@ public class AssistanceController {
 
     }
 
+    @PostMapping("/{assistanceId}/user/{userId}/assign")
+    public ResponseEntity<AssistanceDto> updateAssistance(
+        @PathVariable("assistanceId") Long assistanceId, @PathVariable("userId") Long assistantId) {
+        Assistance updatedAssistance = assistanceService
+            .assignAssistance(assistanceId, assistantId);
+
+        return ResponseEntity.ok(updatedAssistance.toDto());
+    }
 
 }
