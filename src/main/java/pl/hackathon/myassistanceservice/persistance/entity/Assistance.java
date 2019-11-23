@@ -45,7 +45,6 @@ public class Assistance {
     @Enumerated(EnumType.STRING)
     private AssistanceStatus assistanceStatus;
 
-    @Enumerated(EnumType.STRING)
     private String disabilityType;
 
     private String helpType;
