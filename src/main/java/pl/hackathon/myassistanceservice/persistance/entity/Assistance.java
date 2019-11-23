@@ -55,7 +55,9 @@ public class Assistance {
                 .setLatitude(this.latitude)
                 .setLongitude(this.longitude)
                 .setCreator(this.creator != null ? this.creator.getId() : null)
+                .setCreatorName(this.creator != null ? this.creator.getUsername() : null)
                 .setAssistant(this.assistant != null ? this.assistant.getId() : null)
+                .setAssistantName(this.assistant != null ? this.assistant.getUsername() : null)
                 .setAssistanceStatus(this.assistanceStatus)
                 .setDisabilityType(this.disabilityType)
                 .setHelpType(this.helpType);
