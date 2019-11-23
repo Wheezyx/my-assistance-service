@@ -26,7 +26,7 @@ public class AssistanceController {
   public ResponseEntity getAssistances(@RequestParam double latitude,
       @RequestParam double longitude,
       @RequestParam(defaultValue = "10.0") double range) {
-    Set<Assistance> assistances = assistanceService
+    Set<AssistanceDto> assistances = assistanceService
         .findAssistancesInRange(latitude, longitude, range);
     return ResponseEntity.ok(assistances);
   }
