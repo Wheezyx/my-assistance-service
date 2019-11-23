@@ -1,5 +1,5 @@
 package pl.hackathon.myassistanceservice.service;
 
 public interface EmailService {
-    void sendMail(String to,String helperName);
+    void sendMail(String directEmail,String directUsername, String helperUsername);
 }

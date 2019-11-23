@@ -15,6 +15,6 @@ public class EmailController {
 
     @PostMapping("/sendMail")
     public void recoverPassword(@RequestBody Map<String, String> data) {
-        emailService.sendMail(data.get("email"),data.get("username"));
+        emailService.sendMail(data.get("directEmail"),data.get("directUsername"),data.get("helperUsername"));
     }
 }

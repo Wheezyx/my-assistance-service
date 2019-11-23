@@ -1,11 +1,8 @@
 package pl.hackathon.myassistanceservice.utils;
 
-import org.springframework.beans.factory.annotation.Value;
-
 public class MailMessageTemplateUtil {
 
-    @Value("${spring.mail.username}")
-    private static String serviceEmail;
+    private static final String serviceEmail = "myassistancehackathon@gmail.com";
     private static final String SUBJECT = "ZNALEZIONO POMOC";
 
     public static String createMessageContentTemplate(final MessageData messageData) {
@@ -83,9 +80,9 @@ public class MailMessageTemplateUtil {
                 "                                                               <tbody>\n" +
                 "                                                                  <tr>\n" +
                 "                                                                     <td align=\"center\" width=\"100%\" style=\"padding: 0 15px;text-align: justify;color: rgb(76, 76, 76);font-size: 12px;line-height: 18px;\">\n" +
-                "                                                                        <h3 style=\"font-weight: 600; padding: 0px; margin: 0px; font-size: 16px; line-height: 24px; text-align: center;\" class=\"title-color\">Hi"+ messageData.getDirectPerson()+" ,</h3>\n" +
+                "                                                                        <h3 style=\"font-weight: 600; padding: 0px; margin: 0px; font-size: 16px; line-height: 24px; text-align: center;\" class=\"title-color\">Hi " + messageData.getDirectPerson() + " ,</h3>\n" +
                 "                                                                        <p style=\"margin: 20px 0 30px 0;font-size: 15px;text-align: center;\">Znalazła się chętna osoba aby Ci pomóc. Wysłaliśmy jej twoje dane kontaktowe. Możesz odwiedzić jej profil klikając w przycisk <b>poniżej!</b>!</p>\n" +
-                "                                                                        <div style=\"font-weight: 200; text-align: center; margin: 25px;\"><a href = \"www.onet.pl\" style=\"padding:0.6em 1em;border-radius:600px;color:#ffffff;font-size:14px;text-decoration:none;font-weight:bold\" class=\"button-color\">"+messageData.getHelperPersonName()+"</a></div>\n" +
+                "                                                                        <div style=\"font-weight: 200; text-align: center; margin: 25px;\"><a href = \""+messageData.getHelperPersonLink()+"\" style=\"padding:0.6em 1em;border-radius:600px;color:#ffffff;font-size:14px;text-decoration:none;font-weight:bold\" class=\"button-color\">" + messageData.getHelperPersonName() + "</a></div>\n" +
                 "                                                                     </td>\n" +
                 "                                                                  </tr>\n" +
                 "                                                               </tbody>\n" +

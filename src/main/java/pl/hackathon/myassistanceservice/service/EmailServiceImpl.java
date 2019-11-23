@@ -21,13 +21,13 @@ public class EmailServiceImpl implements EmailService {
 
     @Async
     @Override
-    public void sendMail(String to, String helperName) {
-        MessageData messageData = new MessageData(to,helperName,"");
+    public void sendMail(String directEmail, String directUsername,String helperUsername) {
+        MessageData messageData = new MessageData(directUsername,helperUsername,"www.onet.pl");
         String subject = MailMessageTemplateUtil.createMessageSubjectTemplate();
         String text = MailMessageTemplateUtil.createMessageContentTemplate(messageData);
         String from = MailMessageTemplateUtil.getServiceEmail();
 
-        MimeMessage mimeMessage = processSendMailRequest(to, from, subject, text);
+        MimeMessage mimeMessage = processSendMailRequest(directEmail, from, subject, text);
 
         mailSender.send(mimeMessage);
     }
