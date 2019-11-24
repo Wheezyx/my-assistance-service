@@ -8,9 +8,7 @@ import pl.hackathon.myassistanceservice.persistance.entity.Assistance;
 public interface AssistanceRepository extends JpaRepository<Assistance, Long> {
 
   @Query(value = "select a from Assistance a where " +
-      "a.latitude between :minLatitude and :maxLatitude " +
-      "and a.longitude between :minLongitude and :maxLongitude " +
-      "and a.assistanceStatus = 'ACTIVE' or a.assistanceStatus = 'IN_PROGRESS'")
+      "a.assistanceStatus = 'ACTIVE' or a.assistanceStatus = 'IN_PROGRESS'")
   Set<Assistance> findAssistanceInRange(double minLatitude,
       double maxLatitude,
       double minLongitude,

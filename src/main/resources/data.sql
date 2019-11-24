@@ -8,4 +8,3 @@ INSERT INTO ASSISTANCE(ID, ASSISTANCE_STATUS, DISABILITY_TYPE, HELP_TYPE, LATITU
 (3, 'ACTIVE', null, 'Szukam kogoś kto 26.11.2019 zrobi mi zakupy i spędzi ze mną trochę czasu', '52.197444', '21.007443', null, 1),
 (4, 'ACTIVE', null, 'Witam, poszukuję osoby która pomoże mi w posprzątaniu mieszkania', '52.283405', '21.030151', null, 1),
 (5, 'ACTIVE', null, 'Szukam osoby która zabierze mnie na spacer', '52.288087', '21.033464', null, 1);
-
