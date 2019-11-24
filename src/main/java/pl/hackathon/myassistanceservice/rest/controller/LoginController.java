@@ -33,6 +33,9 @@ public class LoginController {
 
     return UserDto.builder()
         .id(user.getId())
+        .firstName(user.getFirstName())
+        .lastName(user.getLastName())
+        .username(user.getUsername())
         .points(user.getPoints())
         .notCompletedAssistances(notCompletedAssistances)
         .build();

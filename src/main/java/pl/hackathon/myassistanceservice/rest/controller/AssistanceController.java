@@ -31,6 +31,11 @@ public class AssistanceController {
     return ResponseEntity.ok(assistances);
   }
 
+  @GetMapping("/{id}")
+  public ResponseEntity<AssistanceDto> getAssistance(@PathVariable Long id) {
+    return ResponseEntity.ok(this.assistanceService.findAssistanceById(id).toDto());
+  }
+
   @PostMapping("/user/{id}")
   public ResponseEntity<AssistanceDto> saveAssistance(@PathVariable("id") Long creatorId,
       @RequestBody Assistance assistanceToSave) {
